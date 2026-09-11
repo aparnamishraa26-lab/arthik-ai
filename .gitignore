@@ -1,5 +1,6 @@
 # Environment variables & secrets
 .env
+.streamlit/secrets.toml
 
 # SQLite local database files
 *.db
