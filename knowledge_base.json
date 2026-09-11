@@ -1,0 +1,116 @@
+{
+  "system_info": {
+    "name": "ArthikAI",
+    "track": "SDG 1 - No Poverty",
+    "mission": "Empowering individuals and families with low or irregular income through practical budgeting, emergency savings, and public support awareness.",
+    "disclaimer": "⚠️ Disclaimer: ArthikAI provides general financial literacy and public resource information for educational purposes. It does not provide certified financial, legal, or investment advice."
+  },
+  "core_frameworks": {
+    "emergency_fund_limited_income": {
+      "title": "4-Step Practical Emergency Fund Plan for Limited Income",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Establish a Micro-Target First",
+          "description": "Don't get overwhelmed by conventional '6 months of expenses' advice. Start with a realistic micro-target of ₹1,000 to ₹3,000 (enough to cover a sudden clinic visit, cycle repair, or emergency grocery refill)."
+        },
+        {
+          "step": 2,
+          "name": "Audit & Plug Hidden Leaks",
+          "description": "Track every ₹10-₹20 expense for 7 days. Look for recurring daily drains (impulse snacks, unnecessary mobile recharges, ATM transaction fees). Redirecting just ₹30/day saves ₹900/month."
+        },
+        {
+          "step": 3,
+          "name": "Separate from Everyday Spending",
+          "description": "Never keep your emergency buffer in the same cash pocket or primary spending account. Use a dedicated zero-balance account (like PM Jan Dhan) or a physical lockbox to prevent impulse spending."
+        },
+        {
+          "step": 4,
+          "name": "The Daily Micro-Deposit Habit",
+          "description": "Treat your emergency fund like a mandatory daily utility bill. Save ₹20 - ₹50 at the end of every working day before spending on non-essentials. Within 3-4 months, you will have a sturdy ₹3,000 - ₹5,000 shock absorber."
+        }
+      ]
+    },
+    "low_income_budgeting_rule": {
+      "name": "70 / 20 / 10 Survival-to-Security Budget",
+      "description": "Standard 50/30/20 budgets are unrealistic for low-income households where essentials consume the majority of earnings. The 70/20/10 structure is purpose-built for tight budgets.",
+      "breakdown": {
+        "essentials_needs": {
+          "percentage": "70%",
+          "items": "Rent, groceries/ration, essential utilities, medicines, children's school fees, basic transport."
+        },
+        "debt_relief_and_savings": {
+          "percentage": "20%",
+          "items": "Urgent debt repayment (clearing high-interest loans first) + micro-emergency fund building."
+        },
+        "discretionary_buffer": {
+          "percentage": "10%",
+          "items": "Small personal comforts, unavoidable social obligations, minor festival treats without taking fresh debt."
+        }
+      }
+    }
+  },
+  "public_schemes": [
+    {
+      "id": "pmjdy",
+      "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+      "category": "Banking & Financial Access",
+      "benefit": "Zero-balance savings account, free RuPay debit card with ₹2 Lakh accidental insurance cover, and overdraft facility up to ₹10,000 after 6 months.",
+      "eligibility": "Any Indian citizen aged 10+ without a basic bank account. Requires minimal KYC (Aadhaar or voter card)."
+    },
+    {
+      "id": "pmsby",
+      "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+      "category": "Micro-Insurance",
+      "benefit": "Accidental death and full disability cover of ₹2 Lakh for just ₹20 per YEAR.",
+      "eligibility": "Ages 18 to 70 with an active bank account."
+    },
+    {
+      "id": "pmjjby",
+      "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+      "category": "Life Insurance",
+      "benefit": "Life insurance cover of ₹2 Lakh on death due to any reason for ₹436 per YEAR.",
+      "eligibility": "Ages 18 to 50 with a bank account."
+    },
+    {
+      "id": "apy",
+      "name": "Atal Pension Yojana (APY)",
+      "category": "Old Age Security",
+      "benefit": "Guaranteed monthly pension of ₹1,000 to ₹5,000 after age 60 for unorganized sector workers.",
+      "eligibility": "Ages 18 to 40. Monthly contribution depends on entry age (e.g. ₹42 to ₹210/month at age 18)."
+    },
+    {
+      "id": "mudra",
+      "name": "PM MUDRA Yojana (Shishu Loans)",
+      "category": "Micro-Enterprise Credit",
+      "benefit": "Collateral-free loans up to ₹50,000 for small vendors, artisans, kirana stores, and self-employed micro-entrepreneurs at low institutional interest rates.",
+      "eligibility": "Small business owners, micro-entrepreneurs, street vendors."
+    },
+    {
+      "id": "svanidhi",
+      "name": "PM SVANidhi",
+      "category": "Street Vendor Working Capital",
+      "benefit": "Working capital collateral-free loan of ₹10,000 (escalating to ₹20,000 and ₹50,000 on timely repayment) with 7% interest subsidy and cashback on digital transactions.",
+      "eligibility": "Urban street vendors and hawkers."
+    },
+    {
+      "id": "pds",
+      "name": "National Food Security / Antyodaya Anna Yojana (PDS)",
+      "category": "Food Security & Subsidy",
+      "benefit": "Highly subsidized/free foodgrains (wheat, rice, coarse grains) through ration shops under One Nation One Ration Card (ONORC).",
+      "eligibility": "Priority households and poorest families identified by state governments."
+    }
+  ],
+  "debt_trap_solutions": {
+    "moneylender_crisis": [
+      "Stop borrowing from unorganized local moneylenders charging 5% to 10% per MONTH (60-120% per year).",
+      "Approach nationalized bank branches or regional rural banks (RRBs) for Mudra or self-help group (SHG) micro-loans at 9-12% annual rate.",
+      "Join or form a local Self Help Group (SHG) under NRLM (National Rural Livelihoods Mission) to access low-interest community credit pools.",
+      "Prioritize high-interest loans first ('Avalanche method') to stop compounding interest from draining your monthly cash."
+    ]
+  },
+  "guardrail_refusals": {
+    "speculative_crypto_stocks": "I cannot provide stock market picks, cryptocurrency speculation, or trading advice. My role as an SDG 1 Financial Inclusion Assistant is to help you build financial security through safe budgeting, emergency funds, debt reduction, and government welfare resources. Let's focus on securing your emergency reserve first.",
+    "get_rich_quick": "Please beware of schemes promising doubled money or guaranteed 20%+ monthly returns—these are illegal pyramid or chit fund scams. Real financial freedom comes from steady micro-savings, protected bank accounts, and debt control."
+  }
+}

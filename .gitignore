@@ -1,0 +1,18 @@
+# Environment variables & secrets
+.env
+
+# SQLite local database files
+*.db
+*.db-wal
+*.db-shm
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
+
+# OS generated files
+Thumbs.db
+.DS_Store

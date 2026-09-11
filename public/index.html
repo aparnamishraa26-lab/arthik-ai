@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArthikAI — Personal Financial Advisor</title>
+  <meta name="description" content="AI-powered personal financial inclusion assistant providing verified budgeting, emergency fund planning, and government scheme awareness." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- jsPDF for Professional Client-Side PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="app-header" role="banner">
+      <div class="header-left">
+        <div class="brand-badge">
+          <div class="logo-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+              <path d="M12 6v2m0 8v2"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">
+              <h1>ArthikAI</h1>
+              <span class="fin-tag">Personal Financial AI</span>
+            </div>
+            <p class="brand-subtitle">Empowering Everyday Households with Real Financial Security</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Multi-Language Switcher -->
+        <button id="langToggle" class="header-btn lang-btn" title="Switch Language" aria-label="Switch Language between English, Hindi, and Hinglish">
+          <span class="lang-icon">🌐</span>
+          <span id="langText">EN / हिंदी</span>
+        </button>
+
+        <!-- Tools Drawer Button -->
+        <button id="toolsBtn" class="header-btn" title="Open Financial Tools & Calculator" aria-label="Open Financial Tools and Calculators">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <span>Tools & Schemes</span>
+        </button>
+
+        <!-- Download Professional PDF -->
+        <button id="downloadPdfBtn" class="header-btn pdf-btn" title="Download Official Financial Statement PDF" aria-label="Download Official Financial Statement PDF">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Download PDF</span>
+        </button>
+
+        <!-- Clear Chat Button -->
+        <button id="clearChatBtn" class="icon-btn clear-btn" title="Clear Chat History" aria-label="Clear chat history">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button id="themeToggle" class="icon-btn" title="Toggle Dark/Light Theme" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+
+        <!-- User Profile / Auth Button -->
+        <button id="authBtn" class="header-btn auth-btn" title="User Login & Profile" aria-label="User Account">
+          <span class="auth-icon">👤</span>
+          <span id="authLabel">Log In / Sign Up</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-content" role="main">
+      <!-- Chat Interface -->
+      <section class="chat-section" aria-label="Chat with Arthik Sathi">
+        <!-- Educational Compliance Banner -->
+        <div class="compliance-banner" role="region" aria-label="Educational Disclaimer">
+          <div class="banner-icon" aria-hidden="true">🛡️</div>
+          <div class="banner-content">
+            <strong>Educational Financial Guidance:</strong> ArthikAI provides mathematically verified budgeting calculations and public support guidance. It does not provide certified financial, legal, or investment advice.
+          </div>
+        </div>
+
+        <!-- Chat History -->
+        <div id="chatMessages" class="chat-messages" role="log" aria-live="polite">
+          <!-- Initial Welcome Message -->
+          <div class="message-wrapper assistant">
+            <div class="avatar" aria-hidden="true"><span>₹</span></div>
+            <div class="message-bubble">
+              <div class="message-header">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span class="sender-name">Arthik Sathi</span>
+                  <span class="badge-role">Personal Advisor</span>
+                </div>
+                <button class="icon-btn tts-btn" title="Listen to audio" aria-label="Listen to message">🔊</button>
+              </div>
+              <div class="message-body">
+                <p>Namaste! I am <strong>Arthik Sathi</strong>, your Personal Financial Advisor. I am here to help you gain complete control over your money, manage tight expenses, build your first emergency cushion, and connect with government welfare resources.</p>
+                <p id="profileBannerHint" style="font-size: 0.85rem; color: var(--accent-cyan);">💡 <em>Tip: Click <strong>"Log In / Sign Up"</strong> above to save your monthly income so I can calculate your exact 70/20/10 budget automatically!</em></p>
+                <div class="inline-starters-grid">
+                  <button class="starter-chip" data-prompt="I have a limited monthly income. What practical steps can I take to manage my expenses and build a small emergency fund?">
+                    <span class="chip-icon">🎯</span>
+                    <span class="chip-label">Limited Income: Steps to Manage & Build Emergency Fund</span>
+                  </button>
+                  <button class="starter-chip" data-prompt="How can I create a realistic monthly budget on a ₹10,000 to ₹15,000 salary?">
+                    <span class="chip-icon">📊</span>
+                    <span class="chip-label">Low-Income 70/20/10 Budget Rule</span>
+                  </button>
+                  <button class="starter-chip" data-prompt="Which government financial inclusion schemes (PMJDY, PMSBY, PMJJBY, APY) can protect my family?">
+                    <span class="chip-icon">🏛️</span>
+                    <span class="chip-label">Government Schemes & Micro-Insurance</span>
+                  </button>
+                  <button class="starter-chip" data-prompt="How can I break free from high-interest local money lenders without taking more debt?">
+                    <span class="chip-icon">⛓️</span>
+                    <span class="chip-label">Escape High-Interest Money Lenders</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Realistic 2-Second Thinking Indicator -->
+        <div id="thinkingIndicator" class="typing-wrapper hidden" role="status" aria-label="Thinking">
+          <div class="avatar" aria-hidden="true"><span>₹</span></div>
+          <div class="thinking-bubble">
+            <span class="thinking-text">Thinking & Calculating financial models...</span>
+            <div class="dot-box">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-area">
+          <div class="quick-pills-bar" role="toolbar" aria-label="Quick Action Pills">
+            <button class="pill-btn" data-text="What is the 4-step emergency fund plan?">💡 Emergency Fund Steps</button>
+            <button class="pill-btn" data-text="Explain the 70/20/10 rule for tight budgets">📊 70/20/10 Rule</button>
+            <button class="pill-btn" data-text="Tell me about PM Jan Dhan Yojana benefits">🏦 Jan Dhan Account</button>
+            <button class="pill-btn" data-text="How to start saving ₹30 a day?">🪙 Daily ₹30 Savings</button>
+          </div>
+          <form id="chatForm" class="input-container" role="search">
+            <button type="button" id="micBtn" class="icon-btn mic-btn" title="Speak your question (Voice Input)" aria-label="Voice input">
+              <span class="mic-icon">🎙️</span>
+            </button>
+            <textarea 
+              id="userInput" 
+              placeholder="Ask about budgeting, emergency savings, or government schemes (or speak)..." 
+              rows="1" 
+              required
+              aria-label="User query input"
+            ></textarea>
+            <button type="submit" id="sendBtn" class="send-btn" title="Send Message" aria-label="Send message">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+          <div class="input-footer">
+            <span>External Evaluation API: <code>POST /chat</code> (JSON)</span>
+            <span>Zero Calculation Errors • Persistent Multi-Session Memory</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Drawer / Tools Panel -->
+      <aside id="toolsPanel" class="tools-sidebar" aria-label="Interactive Financial Tools">
+        <div class="sidebar-header">
+          <div class="sidebar-title">
+            <span class="sidebar-icon">🧮</span>
+            <h2>Interactive Financial Tools</h2>
+          </div>
+          <button id="closeToolsBtn" class="icon-btn close-btn" title="Close Tools" aria-label="Close tools">✕</button>
+        </div>
+
+        <div class="sidebar-body">
+          <!-- Tool 1: Micro-Budget Simulator -->
+          <div class="tool-card">
+            <div class="tool-badge">Budget Simulator</div>
+            <h3>70 / 20 / 10 Survival-to-Security</h3>
+            <p class="tool-desc">Standard 50/30/20 budgets fail for tight incomes. Use 70% Essentials, 20% Debt & Savings, 10% Discretionary.</p>
+            
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="incomeSlider">Monthly Income:</label>
+                <span id="incomeDisplay" class="highlight-val">₹15,000</span>
+              </div>
+              <input type="range" id="incomeSlider" min="5000" max="50000" step="1000" value="15000" aria-label="Monthly income slider" />
+            </div>
+
+            <div class="budget-breakdown">
+              <div class="breakdown-item needs">
+                <div class="item-label">
+                  <span class="dot-indicator"></span>
+                  <span>Essentials (70%)</span>
+                </div>
+                <span id="needsVal" class="item-amount">₹10,500</span>
+              </div>
+              <div class="breakdown-bar" aria-hidden="true">
+                <div id="barNeeds" class="bar-fill needs-fill" style="width: 70%;"></div>
+                <div id="barSavings" class="bar-fill savings-fill" style="width: 20%;"></div>
+                <div id="barBuffer" class="bar-fill buffer-fill" style="width: 10%;"></div>
+              </div>
+              <div class="breakdown-item savings">
+                <div class="item-label">
+                  <span class="dot-indicator"></span>
+                  <span>Debt Relief & Savings (20%)</span>
+                </div>
+                <span id="savingsVal" class="item-amount">₹3,000</span>
+              </div>
+              <div class="breakdown-item buffer">
+                <div class="item-label">
+                  <span class="dot-indicator"></span>
+                  <span>Discretionary Buffer (10%)</span>
+                </div>
+                <span id="bufferVal" class="item-amount">₹1,500</span>
+              </div>
+            </div>
+
+            <button id="insertBudgetBtn" class="secondary-btn w-full">
+              <span>Send this Breakdown to Chat</span>
+            </button>
+          </div>
+
+          <!-- Tool 2: Emergency Fund Micro-Goal Calculator -->
+          <div class="tool-card">
+            <div class="tool-badge">Goal Tracker</div>
+            <h3>Micro-Emergency Cushion</h3>
+            <p class="tool-desc">Build a starter buffer to avoid high-interest borrowing during sudden emergencies.</p>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="goalSlider">Target Buffer:</label>
+                <span id="goalDisplay" class="highlight-val">₹3,000</span>
+              </div>
+              <input type="range" id="goalSlider" min="1000" max="15000" step="500" value="3000" aria-label="Emergency target slider" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="dailySlider">Daily Savings:</label>
+                <span id="dailyDisplay" class="highlight-val">₹30 / day</span>
+              </div>
+              <input type="range" id="dailySlider" min="10" max="100" step="10" value="30" aria-label="Daily savings slider" />
+            </div>
+
+            <div class="calculator-result">
+              <div class="result-number"><span id="daysNeeded">100</span> Days</div>
+              <p class="result-label">to reach emergency security at ₹30/day (approx. <span id="monthsNeeded">3.3</span> months)</p>
+            </div>
+          </div>
+
+          <!-- Tool 3: Public Schemes Explorer -->
+          <div class="tool-card">
+            <div class="tool-badge">Govt Schemes</div>
+            <h3>Key Public Welfare Programs</h3>
+            <div class="schemes-mini-list">
+              <div class="scheme-item" data-scheme="pmjdy">
+                <strong>PM Jan Dhan Yojana</strong>
+                <span>Zero-balance bank account + ₹2L accident cover</span>
+              </div>
+              <div class="scheme-item" data-scheme="pmsby">
+                <strong>PM Suraksha Bima (PMSBY)</strong>
+                <span>₹2 Lakh accidental insurance for ₹20/year</span>
+              </div>
+              <div class="scheme-item" data-scheme="pmjjby">
+                <strong>PM Jeevan Jyoti (PMJJBY)</strong>
+                <span>₹2 Lakh life insurance for ₹436/year</span>
+              </div>
+              <div class="scheme-item" data-scheme="mudra">
+                <strong>PM MUDRA (Shishu)</strong>
+                <span>Up to ₹50,000 collateral-free micro-credit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tool 4: Expense Leak Scanner -->
+          <div class="tool-card">
+            <div class="tool-badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;">Leak Scanner</div>
+            <h3>🔍 Daily Expense Leak Detector</h3>
+            <p class="tool-desc">Enter small daily impulse spends to see how much money leaks away each month.</p>
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="leakSlider">Daily Snack/Impulse Spend:</label>
+                <span id="leakDisplay" class="highlight-val" style="color: #f43f5e;">₹40 / day</span>
+              </div>
+              <input type="range" id="leakSlider" min="10" max="200" step="10" value="40" style="accent-color: #f43f5e;" aria-label="Daily expense leak slider" />
+            </div>
+            <div class="calculator-result" style="background: rgba(244, 63, 94, 0.08); border-color: rgba(244, 63, 94, 0.25);">
+              <div class="result-number" style="color: #f43f5e;" id="monthlyLeak">₹1,200 / mo</div>
+              <p class="result-label">leaking away (<strong id="yearlyLeak">₹14,400</strong> per year!)</p>
+            </div>
+            <button id="scanLeakBtn" class="secondary-btn w-full" style="margin-top: 10px;">
+              <span>Ask Bot How to Plug This Leak</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Auth Modal (Login / Signup) -->
+    <div id="authModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 id="authModalTitle">User Account</h2>
+          <button id="closeAuthModal" class="icon-btn close-btn" aria-label="Close dialog">✕</button>
+        </div>
+        <div class="modal-tabs">
+          <button id="tabLogin" class="tab-btn active">Log In</button>
+          <button id="tabSignup" class="tab-btn">Sign Up</button>
+        </div>
+        
+        <!-- Login Form -->
+        <form id="loginForm" class="modal-form">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required />
+          </div>
+          <p id="loginError" class="form-error hidden"></p>
+          <button type="submit" class="primary-btn w-full">Log In</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="modal-form hidden">
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" placeholder="e.g. Ramesh Kumar" required />
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" placeholder="Create a secure password" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="signupIncome">Monthly Income (₹)</label>
+              <input type="number" id="signupIncome" placeholder="e.g. 15000" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="signupDependents">Dependents</label>
+              <input type="number" id="signupDependents" placeholder="e.g. 3" min="1" value="1" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signupCity">City / State</label>
+            <input type="text" id="signupCity" placeholder="e.g. Delhi, Jaipur, Mumbai" />
+          </div>
+          <p id="signupError" class="form-error hidden"></p>
+          <button type="submit" class="primary-btn w-full">Create Account</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Clear Chat Confirmation Modal -->
+    <div id="clearModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="clearModalTitle">
+      <div class="modal-card small-modal">
+        <h2 id="clearModalTitle">Clear Chat History?</h2>
+        <p style="margin: 12px 0; color: var(--text-secondary); font-size: 0.9rem;">This will permanently wipe your saved conversation history from the server and browser. This action cannot be undone.</p>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <button type="button" id="cancelClearBtn" class="secondary-btn w-full">Cancel</button>
+          <button type="button" id="confirmClearBtn" class="danger-btn w-full">Yes, Clear All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
